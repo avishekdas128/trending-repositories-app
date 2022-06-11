@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Trending</string>
+    <string name="trending">Trending</string>
+    <string name="search">Search</string>
+    <string name="selected">Selected</string>
+    <string name="offline">Look\'s like we\'re offline</string>
+    <string name="no_internet">No Internet</string>
+    <string name="no_internet_desc">Please check your internet connection</string>
+</resources>
