@@ -12,16 +12,16 @@ The android app lets you:
 ## Screenshots
 
 [<img src="https://user-images.githubusercontent.com/43132866/173200093-60f4f8e9-1555-4e91-9f17-297a87edb510.png" align="left"
-width="200"
+width="180"
 hspace="1" vspace="1">](ss1.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200104-f3040d42-ca7d-4175-bd0e-74a732eb0511.png" align="center"
-width="200"
+width="180"
 hspace="1" vspace="1">](ss2.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200117-4a08db90-08db-45a9-a3e4-102ae1977366.png" align="left"
-width="200"
+width="180"
 hspace="1" vspace="1">](ss3.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200127-7394b344-e67c-458d-9bf1-184d420cbf1e.png" align="center"
-width="200"
+width="180"
 hspace="1" vspace="1">](ss4.png)
 
 ## API
