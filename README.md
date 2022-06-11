@@ -20,7 +20,7 @@ hspace="1" vspace="1">](ss2.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200117-4a08db90-08db-45a9-a3e4-102ae1977366.png" align="left"
 width="180"
 hspace="1" vspace="1">](ss3.png)
-[<img src="https://user-images.githubusercontent.com/43132866/173200127-7394b344-e67c-458d-9bf1-184d420cbf1e.png" align="center"
+[<img src="https://user-images.githubusercontent.com/43132866/173200127-7394b344-e67c-458d-9bf1-184d420cbf1e.png" align="left"
 width="180"
 hspace="1" vspace="1">](ss4.png)
 
