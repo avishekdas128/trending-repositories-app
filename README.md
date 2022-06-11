@@ -13,16 +13,16 @@ The android app lets you:
 
 [<img src="https://user-images.githubusercontent.com/43132866/173200093-60f4f8e9-1555-4e91-9f17-297a87edb510.png" align="left"
 width="200"
-hspace="4" vspace="4">](ss1.png)
+hspace="1" vspace="1">](ss1.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200104-f3040d42-ca7d-4175-bd0e-74a732eb0511.png" align="center"
 width="200"
-hspace="4" vspace="4">](ss2.png)
+hspace="1" vspace="1">](ss2.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200117-4a08db90-08db-45a9-a3e4-102ae1977366.png" align="left"
 width="200"
-hspace="4" vspace="4">](ss3.png)
+hspace="1" vspace="1">](ss3.png)
 [<img src="https://user-images.githubusercontent.com/43132866/173200127-7394b344-e67c-458d-9bf1-184d420cbf1e.png" align="center"
 width="200"
-hspace="4" vspace="4">](ss4.png)
+hspace="1" vspace="1">](ss4.png)
 
 ## API
 Since there is no official API for Trending Repositories (it is one of the internal GitHub API’s), using [GitHub Trending API](https://github-trending-api-wonder.herokuapp.com/)
