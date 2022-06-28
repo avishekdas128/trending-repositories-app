@@ -41,7 +41,7 @@ class NetworkMonitor(private val context: Context) : LiveData<NetworkStatus>() {
         cm.registerNetworkCallback(networkRequest, networkCallback)
 
         //For First Run
-        if(!context.hasInternetConnection())
+        if (!context.hasInternetConnection())
             postValue(NetworkStatus.Unavailable)
     }
 
