@@ -1,7 +1,7 @@
 package com.orangeink.trending.di
 
-import com.orangeink.trending.network.TrendingService
-import com.orangeink.trending.network.TrendingService.Companion.ENDPOINT
+import com.orangeink.trending.feature_trending.data.remote.TrendingService
+import com.orangeink.trending.feature_trending.data.remote.TrendingService.Companion.ENDPOINT
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

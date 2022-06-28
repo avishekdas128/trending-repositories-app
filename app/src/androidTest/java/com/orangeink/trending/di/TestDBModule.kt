@@ -3,8 +3,9 @@ package com.orangeink.trending.di
 import android.content.Context
 import androidx.room.Room
 import com.google.gson.Gson
-import com.orangeink.trending.data.local.Converter
-import com.orangeink.trending.data.local.TrendingDatabase
+import com.orangeink.trending.feature_trending.data.local.Converters
+import com.orangeink.trending.feature_trending.data.local.TrendingDatabase
+import com.orangeink.trending.feature_trending.data.util.GsonParser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,9 +21,9 @@ object TestDBModule {
     @Provides
     @Named("test_db")
     fun provideInMemoryDb(@ApplicationContext context: Context, gson: Gson) = run {
-        Converter.initialize(gson)
         Room.inMemoryDatabaseBuilder(context, TrendingDatabase::class.java)
             .setTransactionExecutor(Executors.newSingleThreadExecutor())
+            .addTypeConverter(Converters(GsonParser(gson)))
             .allowMainThreadQueries()
             .build()
     }

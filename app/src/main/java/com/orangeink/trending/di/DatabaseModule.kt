@@ -3,9 +3,10 @@ package com.orangeink.trending.di
 import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
-import com.orangeink.trending.data.local.Converter
-import com.orangeink.trending.data.local.TrendingDAO
-import com.orangeink.trending.data.local.TrendingDatabase
+import com.orangeink.trending.feature_trending.data.local.Converters
+import com.orangeink.trending.feature_trending.data.local.TrendingDAO
+import com.orangeink.trending.feature_trending.data.local.TrendingDatabase
+import com.orangeink.trending.feature_trending.data.util.GsonParser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,13 +27,11 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         gson: Gson,
-        application: Application,
-        callback: TrendingDatabase.Callback
+        application: Application
     ): TrendingDatabase {
-        Converter.initialize(gson)
         return Room.databaseBuilder(application, TrendingDatabase::class.java, "app_database")
+            .addTypeConverter(Converters(GsonParser(gson)))
             .fallbackToDestructiveMigration()
-            .addCallback(callback)
             .build()
     }
 
