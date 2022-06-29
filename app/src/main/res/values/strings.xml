@@ -6,4 +6,6 @@
     <string name="offline">Look\'s like we\'re offline</string>
     <string name="no_internet">No Internet</string>
     <string name="no_internet_desc">Please check your internet connection</string>
+    <string name="stars">stars</string>
+    <string name="back">Back</string>
 </resources>

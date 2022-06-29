@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/OrangeInk/Trending/app/src/main/res/drawable/bg_rounded_10.xml" value="0.124" />
         <entry key="..\:/OrangeInk/Trending/app/src/main/res/drawable/bg_rounded_5.xml" value="0.1375" />
+        <entry key="..\:/OrangeInk/Trending/app/src/main/res/drawable/ic_heart.xml" value="0.1375" />
+        <entry key="..\:/OrangeInk/Trending/app/src/main/res/drawable/ic_trending.xml" value="0.1375" />
         <entry key="..\:/OrangeInk/Trending/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/OrangeInk/Trending/app/src/main/res/layout/activity_trending.xml" value="0.25" />
         <entry key="..\:/OrangeInk/Trending/app/src/main/res/layout/layout_no_network.xml" value="0.25" />

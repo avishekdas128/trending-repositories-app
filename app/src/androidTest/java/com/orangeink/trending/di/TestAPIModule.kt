@@ -1,21 +1,47 @@
 package com.orangeink.trending.di
 
 import com.orangeink.trending.feature_trending.data.remote.TrendingService
-import com.orangeink.trending.feature_trending.data.remote.TrendingService.Companion.ENDPOINT
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.mockwebserver.MockWebServer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object APIModule {
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [APIModule::class]
+)
+object TestAPIModule {
+
+    @Provides
+    @Singleton
+    fun provideMockServer(): MockWebServer {
+        return MockWebServer()
+    }
+
+    /**
+     * We need to jump through the hoops a bit
+     * to avoid NetworkOnMainThread exception
+     * in our UI tests.
+     */
+    @Provides
+    @Singleton
+    fun provideBaseUrl(mockWebServer: MockWebServer): String {
+        var url = ""
+        val thread = Thread {
+            url = mockWebServer.url("/").toString()
+        }
+        thread.start()
+        thread.join()
+        return url
+    }
 
     @Provides
     @Singleton
@@ -35,9 +61,9 @@ object APIModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
+    fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(ENDPOINT)
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
