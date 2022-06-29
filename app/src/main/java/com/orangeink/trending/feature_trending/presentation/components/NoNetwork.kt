@@ -44,7 +44,7 @@ fun NoNetwork(
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = stringResource(id = R.string.no_internet_desc),
-            color = MaterialTheme.colors.onPrimary,
+            color = MaterialTheme.colors.onSecondary,
             fontSize = 14.sp
         )
     }
