@@ -1,4 +1,4 @@
-package com.orangeink.trending
+package com.orangeink.trending.di
 
 import android.app.Application
 import android.content.Context

@@ -23,9 +23,21 @@ class TrendingRepositoryImpl @Inject constructor(
         emit(Resource.Loading(data = trendingRepositories))
 
         try {
-            val remoteRepositories = service.getRepositories()
-            dao.deleteAll()
-            dao.insertAll(remoteRepositories.map { it.toRepositoryEntity() })
+            val response = service.getRepositories()
+            if (response.isSuccessful) {
+                val remoteRepositories = response.body()
+                remoteRepositories?.let { repositories ->
+                    dao.deleteAll()
+                    dao.insertAll(repositories.map { it.toRepositoryEntity() })
+                }
+            } else {
+                emit(
+                    Resource.Error(
+                        data = trendingRepositories,
+                        message = "${response.code()}-${response.message()}"
+                    )
+                )
+            }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(

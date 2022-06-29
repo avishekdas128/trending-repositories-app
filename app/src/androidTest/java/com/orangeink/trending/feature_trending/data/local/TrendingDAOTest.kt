@@ -1,20 +1,18 @@
 package com.orangeink.trending.feature_trending.data.local
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
-import com.orangeink.trending.feature_trending.data.local.entity.RepositoryEntity
-import com.orangeink.trending.feature_trending.domain.model.BuiltBy
+import com.orangeink.trending.utils.repository1
+import com.orangeink.trending.utils.repository2
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Named
 
 @ExperimentalCoroutinesApi
 @SmallTest
@@ -22,13 +20,9 @@ import javax.inject.Named
 class TrendingDAOTest {
 
     @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
-
-    @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    @Named("test_db")
     lateinit var database: TrendingDatabase
     private lateinit var dao: TrendingDAO
 
@@ -44,24 +38,26 @@ class TrendingDAOTest {
     }
 
     @Test
-    fun insertAndDeleteRepository() = runBlocking {
-        val repository = RepositoryEntity(
-            id = 1,
-            author = "test",
-            name = "test",
-            description = "test",
-            language = null,
-            languageColor = null,
-            stars = 20,
-            forks = 20,
-            currentPeriodStars = 20,
-            builtBy = arrayListOf(BuiltBy(avatar = "test"))
-        )
+    fun insertAllRepositories() = runTest {
+        dao.insertAll(arrayListOf(repository1, repository2))
+        assertThat(dao.getTrendingRepositories()).contains(repository1)
+        assertThat(dao.getTrendingRepositories()).contains(repository2)
 
-        dao.insertAll(arrayListOf(repository))
-        assertThat(dao.getTrendingRepositories()).contains(repository)
+        assertThat(dao.getTrendingRepositories().size).isEqualTo(2)
+    }
+
+    @Test
+    fun deleteAllRepositories() = runTest {
+        dao.insertAll(arrayListOf(repository1, repository2))
+        assertThat(dao.getTrendingRepositories().size).isEqualTo(2)
 
         dao.deleteAll()
         assertThat(dao.getTrendingRepositories().size).isEqualTo(0)
+    }
+
+    @Test
+    fun getAllRepositories() = runTest {
+        dao.insertAll(arrayListOf(repository1, repository2))
+        assertThat(dao.getTrendingRepositories().size).isEqualTo(2)
     }
 }

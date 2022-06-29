@@ -36,7 +36,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun provideRecentSearchDAO(db: TrendingDatabase): TrendingDAO {
+    fun provideTrendingDAO(db: TrendingDatabase): TrendingDAO {
         return db.getTrendingDAO()
     }
 }

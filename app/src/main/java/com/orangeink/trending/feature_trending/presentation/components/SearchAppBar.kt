@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.orangeink.trending.R
+import com.orangeink.trending.feature_trending.presentation.util.TestTags
 
 @Composable
 fun SearchAppBar(
@@ -31,7 +33,8 @@ fun SearchAppBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .focusRequester(focusRequester),
+            .focusRequester(focusRequester)
+            .testTag(TestTags.SearchEditText),
         value = text,
         onValueChange = {
             onTextChange(it)
@@ -50,7 +53,7 @@ fun SearchAppBar(
             IconButton(onClick = { onCloseClicked() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_round_arrow_back_24),
-                    contentDescription = stringResource(id = R.string.search),
+                    contentDescription = stringResource(id = R.string.back),
                     tint = MaterialTheme.colors.onPrimary
                 )
             }

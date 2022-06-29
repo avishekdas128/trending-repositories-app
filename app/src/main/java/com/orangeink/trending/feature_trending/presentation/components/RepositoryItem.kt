@@ -20,8 +20,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.SemanticsPropertyKey
+import androidx.compose.ui.semantics.SemanticsPropertyReceiver
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -32,8 +36,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.orangeink.trending.R
 import com.orangeink.trending.feature_trending.domain.model.Repository
+import com.orangeink.trending.feature_trending.presentation.util.TestTags
 import java.text.NumberFormat
 import java.util.*
+
+val DrawableId = SemanticsPropertyKey<Int>("DrawableResId")
+var SemanticsPropertyReceiver.drawableId by DrawableId
 
 @Composable
 fun RepositoryItem(
@@ -43,6 +51,10 @@ fun RepositoryItem(
     var isSelected by rememberSaveable {
         mutableStateOf(false)
     }
+    val heartIcon = if (isSelected)
+        R.drawable.ic_heart_filled
+    else
+        R.drawable.ic_heart
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -71,12 +83,8 @@ fun RepositoryItem(
             )
             Spacer(modifier = Modifier.weight(1f))
             Icon(
-                painter = painterResource(
-                    id = if (isSelected)
-                        R.drawable.ic_heart_filled
-                    else
-                        R.drawable.ic_heart
-                ),
+                modifier = modifier.semantics { drawableId = heartIcon },
+                painter = painterResource(id = heartIcon),
                 contentDescription = null,
                 tint = if (isSelected)
                     MaterialTheme.colors.error
@@ -125,7 +133,9 @@ fun RepositoryItem(
         Row(verticalAlignment = Alignment.CenterVertically) {
             repository.language?.let {
                 Row(
-                    modifier = Modifier.weight(1f, fill = false),
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .testTag(TestTags.LanguageNode),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(
