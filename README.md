@@ -1,6 +1,6 @@
 # Trending Repositories on GitHub
 
-An android app that lists trending Github repositories.
+An android application that lists trending Github repositories.
 
 ## Features
 
@@ -11,16 +11,16 @@ The android app lets you:
 
 ## Screenshots
 
-[<img src="https://user-images.githubusercontent.com/43132866/173200093-60f4f8e9-1555-4e91-9f17-297a87edb510.png" align="left"
+[<img src="https://user-images.githubusercontent.com/43132866/176552467-24f848bc-6c00-4f7a-aacb-c14816c453cb.png" align="left"
 width="180"
 hspace="1" vspace="1">](ss1.png)
-[<img src="https://user-images.githubusercontent.com/43132866/173200104-f3040d42-ca7d-4175-bd0e-74a732eb0511.png" align="center"
+[<img src="https://user-images.githubusercontent.com/43132866/176552774-2b9a5264-044b-4590-b6b5-82d9cb37bd0c.png" align="center"
 width="180"
 hspace="1" vspace="1">](ss2.png)
-[<img src="https://user-images.githubusercontent.com/43132866/173200117-4a08db90-08db-45a9-a3e4-102ae1977366.png" align="left"
+[<img src="https://user-images.githubusercontent.com/43132866/176552619-01425eae-eaab-4a19-8b2f-f5a593fb5d45.png" align="left"
 width="180"
 hspace="1" vspace="1">](ss3.png)
-[<img src="https://user-images.githubusercontent.com/43132866/173200127-7394b344-e67c-458d-9bf1-184d420cbf1e.png" align="left"
+[<img src="https://user-images.githubusercontent.com/43132866/176553363-be8d9ce7-8451-4f5e-be01-22f5fbbdb358.png" align="left"
 width="180"
 hspace="1" vspace="1">](ss4.png)
 
@@ -32,12 +32,20 @@ Since there is no official API for Trending Repositories (it is one of the inter
 - [Kotlin](https://kotlinlang.org/) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) for asynchronous.
 - Dagger-Hilt for dependency injection.
 - JetPack
-    - LiveData - notify domain layer data to views.
-    - Lifecycle - dispose of observing data when lifecycle state changes.
+    - State - Notify domain layer data to views.
+    - SharedFlows - Notify one time events to the UI layer.
+    - Lifecycle - Dispose of observing data when lifecycle state changes.
     - ViewModel - UI related data holder, lifecycle aware.
-    - View Binding - bind UI elements to data.
+    - [Compose](https://developer.android.com/jetpack/compose) - Render UI.
 - Architecture
     - MVVM Architecture (View - DataBinding - ViewModel - Model)
     - Repository pattern
-- [Glide](https://github.com/bumptech/glide) - loading images.
-- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
+    - data ~ domain(use-cases) ~ presentation
+- [Coil](https://coil-kt.github.io/coil/compose/) - Loading Images for Jetpack Compose.
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - Construct the REST APIs and Network data.
+- [Room Database](https://developer.android.com/jetpack/androidx/releases/room) - For offline caching of data
+- Testing
+    - [Turbine](https://github.com/cashapp/turbine) - For testing HotFlows
+    - [Kotlin Coroutines Test](https://developer.android.com/kotlin/coroutines/test)
+    - Mockito - Mocking Framework for writing unit tests.
+    - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - To mock the web server for APIs
