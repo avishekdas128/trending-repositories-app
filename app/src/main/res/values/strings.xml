@@ -8,4 +8,5 @@
     <string name="no_internet_desc">Please check your internet connection</string>
     <string name="stars">stars</string>
     <string name="back">Back</string>
+    <string name="avatar_description">Avatar Description</string>
 </resources>

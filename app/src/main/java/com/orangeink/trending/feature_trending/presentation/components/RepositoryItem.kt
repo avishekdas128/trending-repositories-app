@@ -1,7 +1,6 @@
 package com.orangeink.trending.feature_trending.presentation.components
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,6 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,7 +34,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.orangeink.trending.R
 import com.orangeink.trending.feature_trending.domain.model.Repository
 import com.orangeink.trending.feature_trending.presentation.util.TestTags
@@ -119,10 +121,13 @@ fun RepositoryItem(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(repository.builtBy.size) { i ->
-                val builtBy = repository.builtBy[i]
-                Image(
-                    painter = rememberAsyncImagePainter(builtBy.avatar),
-                    contentDescription = repository.builtBy[i].avatar,
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(repository.builtBy[i].avatar)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = stringResource(R.string.avatar_description),
+                    contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(18.dp)
                         .clip(CircleShape)
