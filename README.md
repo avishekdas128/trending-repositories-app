@@ -38,7 +38,7 @@ Since there is no official API for Trending Repositories (it is one of the inter
     - ViewModel - UI related data holder, lifecycle aware.
     - [Compose](https://developer.android.com/jetpack/compose) - Render UI.
 - Architecture
-    - MVVM Architecture (View - DataBinding - ViewModel - Model)
+    - MVI Architecture [Clean Code] (Model - View - Intent)
     - Repository pattern
     - data ~ domain(use-cases) ~ presentation
 - [Coil](https://coil-kt.github.io/coil/compose/) - Loading Images for Jetpack Compose.
