@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.orangeink.trending.core.util.Resource
 import com.orangeink.trending.feature_trending.domain.model.Repository
-import com.orangeink.trending.feature_trending.domain.use_case.GetTrendingRepositories
+import com.orangeink.trending.feature_trending.domain.repository.TrendingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrendingViewModel @Inject constructor(
-    private val getTrendingRepositories: GetTrendingRepositories
+    private val repository: TrendingRepository
 ) : ViewModel() {
 
     private val _search = mutableStateOf("")
@@ -38,14 +38,13 @@ class TrendingViewModel @Inject constructor(
     fun loadData() {
         _state.value = TrendingRepositoryState()
         viewModelScope.launch {
-            getTrendingRepositories().onEach { result ->
+            repository.getTrendingRepositories().onEach { result ->
                 when (result) {
                     is Resource.Error -> {
                         data = result.data ?: emptyList()
                         _state.value = _state.value.copy(
-                            trendingRepositories = result.data ?: emptyList(),
+                            trendingRepositories = data,
                             isLoading = false,
-                            noNetwork = data.isEmpty()
                         )
                         if (data.isNotEmpty())
                             _eventFlow.emit(
@@ -57,14 +56,14 @@ class TrendingViewModel @Inject constructor(
                     is Resource.Loading -> {
                         data = result.data ?: emptyList()
                         _state.value = _state.value.copy(
-                            trendingRepositories = result.data ?: emptyList(),
+                            trendingRepositories = data,
                             isLoading = true
                         )
                     }
                     is Resource.Success -> {
                         data = result.data ?: emptyList()
                         _state.value = _state.value.copy(
-                            trendingRepositories = result.data ?: emptyList(),
+                            trendingRepositories = data,
                             isLoading = false
                         )
                     }

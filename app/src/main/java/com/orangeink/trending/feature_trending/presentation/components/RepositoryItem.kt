@@ -3,7 +3,17 @@ package com.orangeink.trending.feature_trending.presentation.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -40,7 +50,7 @@ import com.orangeink.trending.R
 import com.orangeink.trending.feature_trending.domain.model.Repository
 import com.orangeink.trending.feature_trending.presentation.util.TestTags
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 val DrawableId = SemanticsPropertyKey<Int>("DrawableResId")
 var SemanticsPropertyReceiver.drawableId by DrawableId
@@ -108,12 +118,14 @@ fun RepositoryItem(
             fontSize = 16.sp,
             color = MaterialTheme.colors.secondary
         )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = repository.description,
-            fontSize = 11.sp,
-            color = MaterialTheme.colors.onSecondary
-        )
+        if (repository.description.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = repository.description,
+                fontSize = 11.sp,
+                color = MaterialTheme.colors.onSecondary
+            )
+        }
         Spacer(modifier = Modifier.height(8.dp))
         val lazyRowState = rememberLazyListState()
         LazyRow(

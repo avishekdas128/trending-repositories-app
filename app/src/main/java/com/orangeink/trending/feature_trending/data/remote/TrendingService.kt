@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface TrendingService {
 
     companion object {
-        const val ENDPOINT = "https://github-trending-api-wonder.herokuapp.com/"
+        const val ENDPOINT = "https://api.gitterapp.com/"
     }
 
     @GET("repositories")

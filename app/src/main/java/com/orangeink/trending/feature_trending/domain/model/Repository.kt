@@ -1,5 +1,8 @@
 package com.orangeink.trending.feature_trending.domain.model
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 data class Repository(
     val id: Int,
     val author: String,
@@ -12,3 +15,8 @@ data class Repository(
     val name: String,
     val stars: Int
 )
+
+data class BuiltBy(
+    val avatar: String
+)
+
